@@ -14,20 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [MainController::class, 'index']);
-Route::get('news', [MainController::class, 'index']);
-
-
-
-/* 
-index.php
------------
-require 'web.php';
-
-get($path, $arr){
-    $controller = new MainController();
-    echo $controller->index()   //  return 'Hello'
-}
-
-
-*/
+Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('contacts', [MainController::class, 'contacts'])->name('contacts');
+Route::post('contacts', [MainController::class, 'sendEmail'])->name('sendEmail');
