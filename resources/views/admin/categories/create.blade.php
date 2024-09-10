@@ -16,7 +16,9 @@
         </div>
 
         <div class="mt-3">
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary" name="new" value="1">Create and add new</button>
+
+            <button type="submit" class="btn btn-primary" name="new" value="0">Create</button>
         </div>
     </form>
 

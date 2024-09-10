@@ -30,6 +30,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
         ]);
@@ -39,7 +40,12 @@ class CategoryController extends Controller
         $category->description = $request->description;
         $category->save();
 
-        return redirect()->route('categories.index');
+       
+        if($request->new === "0")
+            return redirect()->route('categories.index');
+        else
+            return redirect()->route('categories.create');
+        
     }
 
     /**
