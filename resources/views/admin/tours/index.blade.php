@@ -1,28 +1,32 @@
 @extends('templates.main')
 
 @section('content')
-    <h1>Categories</h1>
+    <h1>Tours</h1>
 
-    <a href="{{route('categories.create')}}" class="btn btn-primary my-3">Create</a>
+    <a href="{{route('tours.create')}}" class="btn btn-primary my-3">Create</a>
 
     <table class="table">
         <thead>
             <tr>
                 <th>#</th>
+                <th>Image</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Category</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($categories as $category)
+            @foreach ($tours as $tour)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$category->name}}</td>
-                <td>{{$category->description}}</td>
+                <td>{{$tour->image}}</td>
+                <td>{{$tour->name}}</td>
+                <td>{{$tour->description}}</td>
+                <td>{{$tour->category->name}}</td>
                 <td>
-                    <a href="{{route('categories.edit', $category)}}" class="btn btn-warning">Edit</a>
-                    <form action="{{route('categories.destroy', $category)}}" method="POST">
+                    <a href="{{route('tours.edit', $tour)}}" class="btn btn-warning">Edit</a>
+                    <form action="{{route('tours.destroy', $tour)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
