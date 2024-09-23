@@ -25,20 +25,33 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Categories</a>
+                        <ul class="dropdown-menu">
+                            @foreach ($categoriesShare as $item)
+                                <li>
+                                    <a class="nav-link active" aria-current="page"
+                                        href="{{ route('home') }}">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('contacts') }}">Contacts</a>
                     </li>
 
-                    @auth
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"
-                            href="{{ route('categories.index') }}">Categories</a>
-                    </li>
+                    @admin
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                href="{{ route('categories.index') }}">Categories</a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('tours.index') }}">Tours</a>
-                    </li>
-                    @endauth
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('tours.index') }}">Tours</a>
+                        </li>
+                    @endadmin
 
                 </ul>
 

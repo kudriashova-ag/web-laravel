@@ -24,8 +24,8 @@ Route::post('contacts', [MainController::class, 'sendEmail'])->name('sendEmail')
 
 
 
-Route::resource('admin/categories', CategoryController::class)->middleware('auth');
-Route::resource('admin/tours', TourController::class)->middleware('auth');
+Route::resource('admin/categories', CategoryController::class)->middleware(['auth', 'admin']);
+Route::resource('admin/tours', TourController::class)->middleware(['auth', 'admin']);
 
 
 // Route::get('/tour/{tour}', [MainController::class, 'tour'])->name('tour');
