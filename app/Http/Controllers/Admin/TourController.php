@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Tour;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,8 @@ class TourController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.tours.create', compact('categories'));
     }
 
     /**
@@ -30,7 +32,22 @@ class TourController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3',
+            'category_id' => 'required|exists:categories,id',
+            'price' => 'required|numeric',
+            'image' => 'sometimes|image',
+        ]);
+
+        $tour = Tour::create($request->all());
+
+        if($request->image){
+            $image = 'storage/' . $request->file('image')->store('public/images');
+            $tour->image = $image;
+            $tour->save();
+        }
+
+        return redirect()->route('tours.index');
     }
 
     /**
@@ -62,6 +79,7 @@ class TourController extends Controller
      */
     public function destroy(Tour $tour)
     {
-        //
+        $tour->delete();
+        return redirect()->route('tours.index');
     }
 }

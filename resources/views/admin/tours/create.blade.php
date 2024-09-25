@@ -1,9 +1,9 @@
 @extends('templates.main')
 
 @section('content')
-    <h1>Create Category</h1>
+    <h1>Create Tour</h1>
 
-    <form action="{{ route('categories.store') }}" method="POST">
+    <form action="{{ route('tours.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div>
             <label for="name">Name</label>
@@ -16,9 +16,28 @@
         </div>
 
         <div class="mt-3">
-            <button type="submit" class="btn btn-primary" name="new" value="1">Create and add new</button>
+            <label for="price">Price</label>
+            <input type="text" name="price" id="price" class="form-control">
+        </div>
 
-            <button type="submit" class="btn btn-primary" name="new" value="0">Create</button>
+        <div class="mt-3">
+            <label for="image">Category</label>
+            <select name="category_id" class="form-control">
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mt-3">
+            <label for="image">Image</label>
+            <input type="file" name="image" class="form-control">
+        </div>
+
+
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Create</button>
         </div>
     </form>
 

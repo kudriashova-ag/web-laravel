@@ -20,9 +20,11 @@
             @foreach ($tours as $tour)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$tour->image}}</td>
+                <td>
+                    <img src="{{asset($tour->image)}}" alt="" width="100">
+                </td>
                 <td>{{$tour->name}}</td>
-                <td>{{$tour->description}}</td>
+                <td>{{$tour->short_description}}</td>
                 <td>{{$tour->category->name}}</td>
                 <td>
                     <a href="{{route('tours.edit', $tour)}}" class="btn btn-warning">Edit</a>

@@ -11,6 +11,7 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Tours</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,8 +19,13 @@
             @foreach ($categories as $category)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$category->name}}</td>
+                <td>{{$category->name}} ({{$category->tours_count}}) </td>
                 <td>{{$category->description}}</td>
+                <td>
+                    @foreach ($category->tours as $tour)
+                        <p>{{$tour->name}}</p>
+                    @endforeach
+                </td>
                 <td>
                     <a href="{{route('categories.edit', $category)}}" class="btn btn-warning">Edit</a>
                     <form action="{{route('categories.destroy', $category)}}" method="POST">
